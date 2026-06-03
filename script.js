@@ -263,6 +263,9 @@ const state = {
   cart: JSON.parse(localStorage.getItem("bookblush-cart") || "{}"),
   language: localStorage.getItem("bookblush-language") || "en",
   currency: localStorage.getItem("bookblush-currency") || "CAD",
+
+  promoCode: localStorage.getItem("bookblush-promo") || null,
+  promoUsed: localStorage.getItem("bookblush-promo-used") === "true",
 };
 
 const productRoots = {
@@ -320,6 +323,43 @@ function cartValueCAD() {
     const product = getProduct(id);
     return product ? sum + product.priceCAD * qty : sum;
   }, 0);
+}
+
+function calculateDiscountCAD() {
+  let discount = 0;
+
+  let bookmarkCount = 0;
+  let kindleCount = 0;
+
+  Object.entries(state.cart).forEach(([id, qty]) => {
+    const product = getProduct(id);
+    if (!product) return;
+
+    if (product.category === "bookmark") {
+      bookmarkCount += qty;
+    }
+
+    if (product.category === "kindle") {
+      kindleCount += qty;
+    }
+  });
+
+  // 📚 3 bookmarks = -10%
+  const groupsOf3 = Math.floor(bookmarkCount / 3);
+  const bookmarkBase = groupsOf3 * 3 * 6.5;
+  discount += bookmarkBase * 0.10;
+
+  // 🎁 combo bookmark + kindle = -5%
+  const combos = Math.min(bookmarkCount, kindleCount);
+  const comboBase = combos * ((6.5 + 9.5) / 2);
+  discount += comboBase * 0.05;
+
+  // 🏷️ code promo BOOKBLUSH10 (1 seule utilisation appareil)
+  if (state.promoCode === "BOOKBLUSH10" && !state.promoUsed) {
+    discount += cartValueCAD() * 0.10;
+  }
+
+  return discount;
 }
 
 function showToast(message) {
@@ -385,7 +425,17 @@ function renderProducts() {
 function renderCart() {
   const entries = Object.entries(state.cart).filter(([, qty]) => qty > 0);
   cartCount.textContent = cartQuantity();
-  cartTotal.textContent = formatMoney(cartValueCAD());
+  const subtotal = cartValueCAD();
+
+let discount = 0;
+
+if (state.promoCode === "BOOKBLUSH10") {
+  discount = subtotal * 0.1;
+}
+
+const totalCAD = subtotal - discount;
+
+cartTotal.textContent = formatMoney(Math.max(0, totalCAD));
   cartEmpty.classList.toggle("is-visible", entries.length === 0);
 
   cartItems.innerHTML = entries
@@ -408,6 +458,10 @@ function renderCart() {
       `;
     })
     .join("");
+  <div class="promo-box">
+  <input type="text" id="promoInput" placeholder="Promo code" />
+  <button type="button" id="applyPromo">Apply</button>
+</div>
 }
 
 function renderAll() {
@@ -514,6 +568,37 @@ document.querySelector(".newsletter").addEventListener("submit", (event) => {
   event.preventDefault();
   event.currentTarget.reset();
   showToast(text("newsletterToast"));
+});
+
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "applyPromo") {
+    const input = document.getElementById("promoInput");
+    const code = input.value.trim();
+
+    if (!code) {
+      showToast("Enter a code");
+      return;
+    }
+
+    if (state.promoUsed) {
+      showToast("Already used");
+      return;
+    }
+
+    if (code === "BOOKBLUSH10") {
+      state.promoCode = code;
+      state.promoUsed = true;
+
+      localStorage.setItem("bookblush-promo", code);
+      localStorage.setItem("bookblush-promo-used", "true");
+
+      renderCart();
+      showToast("Promo applied 💖");
+    } else {
+      showToast("Invalid code");
+    }
+  }
 });
 
 renderAll();
