@@ -422,69 +422,7 @@ function renderProducts() {
   });
 }
 
-  function renderCart() {
-  const entries = Object.entries(state.cart).filter(([, qty]) => qty > 0);
-
-  cartCount.textContent = cartQuantity();
-
-  const subtotal = cartValueCAD();
-
-  let discount = 0;
-
-  // 📦 3 bookmarks = -10%
-  let bookmarkCount = 0;
-  let kindleCount = 0;
-
-  Object.entries(state.cart).forEach(([id, qty]) => {
-    const product = getProduct(id);
-    if (!product) return;
-
-    if (product.category === "bookmark") bookmarkCount += qty;
-    if (product.category === "kindle") kindleCount += qty;
-  });
-
-  const groupsOf3 = Math.floor(bookmarkCount / 3);
-  discount += groupsOf3 * 3 * 6.5 * 0.1;
-
-  // 🎁 combo bookmark + kindle = -5%
-  const combos = Math.min(bookmarkCount, kindleCount);
-  discount += combos * ((6.5 + 9.5) / 2) * 0.05;
-
-  // 💖 code promo (1 seule fois)
-  if (state.promoCode === "BOOKBLUSH10" && state.promoUsed) {
-    discount += subtotal * 0.1;
-  }
-
-  const totalCAD = Math.max(0, subtotal - discount);
-
-  cartTotal.textContent = formatMoney(totalCAD);
-
-  cartEmpty.classList.toggle("is-visible", entries.length === 0);
-
-  cartItems.innerHTML = entries
-    .map(([id, qty]) => {
-      const product = getProduct(id);
-      if (!product) return "";
-
-      return `
-        <article class="cart-line">
-          <img src="${product.image}" alt="${product.name}" />
-          <div>
-            <h3>${product.name}</h3>
-            <p>${productType(product)} - ${formatMoney(product.priceCAD)}</p>
-          </div>
-
-          <div class="qty-controls">
-            <button type="button" data-decrease="${product.id}">-</button>
-            <span>${qty}</span>
-            <button type="button" data-increase="${product.id}">+</button>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
-}
-
+ 
 function renderAll() {
   applyTranslations();
   renderProducts();
