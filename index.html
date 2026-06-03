@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookBlush | Bookmarks and Kindle Inserts</title>
+    <meta
+      name="description"
+      content="BookBlush creates cute, classy bookmarks and Kindle inserts for readers who love pretty pages."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="BookBlush home">
+        <span class="brand-mark">B</span>
+        <span>BookBlush</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#bookmarks" data-i18n="navBookmarks">Bookmarks</a>
+        <a href="#kindle" data-i18n="navKindle">Kindle Inserts</a>
+        <a href="#deals" data-i18n="navDeals">Deals</a>
+        <a href="#faq" data-i18n="navFaq">FAQ</a>
+      </nav>
+
+      <div class="header-tools" aria-label="Shop settings">
+        <label class="select-control">
+          <span data-i18n="languageLabel">Language</span>
+          <select data-language>
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+          </select>
+        </label>
+        <label class="select-control">
+          <span data-i18n="currencyLabel">Currency</span>
+          <select data-currency>
+            <option value="CAD">CAD</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </label>
+        <button class="cart-trigger" type="button" data-open-cart aria-label="Open cart">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M7 8h10l-.8 11H7.8L7 8Z" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M9 8a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Bookmarks and Kindle inserts made with love</p>
+          <h1 id="hero-title">BookBlush</h1>
+          <p class="hero-text" data-i18n="heroText">
+            Cute, classy reading accessories made to match your current book, your Kindle, and your mood.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#bookmarks" data-i18n="shopBookmarks">Shop bookmarks</a>
+            <a class="button ghost" href="#kindle" data-i18n="shopKindle">Shop Kindle inserts</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="assets/hero-bookblush.png" alt="BookBlush bookmarks and Kindle insert" />
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="BookBlush benefits">
+        <span data-i18n="trustSmall">Small business</span>
+        <span data-i18n="trustCute">Cute and classy designs</span>
+        <span data-i18n="trustCustom">Custom options</span>
+        <span data-i18n="trustEasy">Easy ordering</span>
+      </section>
+
+      <section class="section shop-section" id="bookmarks" aria-labelledby="bookmarks-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="bookmarkEyebrow">Bookmarks</p>
+            <h2 id="bookmarks-title" data-i18n="bookmarkTitle">Pretty page holders</h2>
+          </div>
+          <p data-i18n="bookmarkIntro">
+            Soft, decorative bookmarks for paperbacks, hardcovers, planners, and gifting.
+          </p>
+        </div>
+        <div class="product-grid" data-products="bookmark"></div>
+      </section>
+
+      <section class="section shop-section tinted-section" id="kindle" aria-labelledby="kindle-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="kindleEyebrow">Kindle Inserts</p>
+            <h2 id="kindle-title" data-i18n="kindleTitle">Dress up your Kindle</h2>
+          </div>
+          <p data-i18n="kindleIntro">
+            Inserts designed to slide inside a clear Kindle case without sticking to the device.
+          </p>
+        </div>
+        <div class="product-grid" data-products="kindle"></div>
+      </section>
+
+      <section class="section deals-section" id="deals" aria-labelledby="deals-title">
+        <div>
+          <p class="eyebrow" data-i18n="dealsEyebrow">Deals</p>
+          <h2 id="deals-title" data-i18n="dealsTitle">Reader-friendly savings</h2>
+          <p data-i18n="dealsIntro">
+            Add a bundle or seasonal discount to make orders feel special from day one.
+          </p>
+        </div>
+        <div class="deal-grid">
+          <article class="deal-card">
+            <span data-i18n="dealOneBadge">Bundle</span>
+            <h3 data-i18n="dealOneTitle">Bookmark trio</h3>
+            <p data-i18n="dealOneText">Buy any 3 bookmarks and save 10% on the set.</p>
+          </article>
+          <article class="deal-card featured-deal">
+            <span data-i18n="dealTwoBadge">Launch</span>
+            <h3 data-i18n="dealTwoTitle">Blush launch code</h3>
+            <p><strong>BOOKBLUSH10</strong></p>
+            <p data-i18n="dealTwoText">Use this code for 10% off your first order.</p>
+          </article>
+          <article class="deal-card">
+            <span data-i18n="dealThreeBadge">Gift</span>
+            <h3 data-i18n="dealThreeTitle">Reading bestie set</h3>
+            <p data-i18n="dealThreeText">Pair one bookmark with one Kindle insert and save 5%.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section" id="collections" aria-labelledby="collections-title">
+        <div>
+          <p class="eyebrow" data-i18n="collectionsEyebrow">Collections</p>
+          <h2 id="collections-title" data-i18n="collectionsTitle">A vibe for every reader</h2>
+        </div>
+        <div class="collection-list">
+          <article>
+            <h3>Soft Romance</h3>
+            <p data-i18n="collectionOne">Powder pinks, quiet florals, and sweet details for cozy reads.</p>
+          </article>
+          <article>
+            <h3>Clean Girl Reader</h3>
+            <p data-i18n="collectionTwo">Sage, cream, and minimal details for a calm, polished look.</p>
+          </article>
+          <article>
+            <h3>Midnight Pages</h3>
+            <p data-i18n="collectionThree">Moon, star, and soft lilac designs for late-night chapters.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section details-band" aria-label="Shop information">
+        <div>
+          <h2 data-i18n="infoTitle">Everything a real shop needs</h2>
+          <p data-i18n="infoText">
+            Clear product sections, photos, FAQs, contact, shipping details, returns, discounts, and a simple cart.
+          </p>
+        </div>
+        <div class="mini-policies">
+          <article>
+            <h3 data-i18n="shippingTitle">Shipping</h3>
+            <p data-i18n="shippingText">Orders are prepared in 2 to 5 business days. Shipping options can be adjusted by country.</p>
+          </article>
+          <article>
+            <h3 data-i18n="returnsTitle">Returns</h3>
+            <p data-i18n="returnsText">Returns are available within 14 days for unused, non-custom items.</p>
+          </article>
+          <article>
+            <h3 data-i18n="customTitle">Custom</h3>
+            <p data-i18n="customText">Request a color, theme, name, or short quote for a gift-ready piece.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title" data-i18n="faqTitle">Frequently asked questions</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary data-i18n="faqOneQ">Do Kindle inserts stick to the Kindle?</summary>
+            <p data-i18n="faqOneA">No. They are decorative inserts made to slide inside a clear case.</p>
+          </details>
+          <details>
+            <summary data-i18n="faqTwoQ">Can I customize a design?</summary>
+            <p data-i18n="faqTwoA">Yes. You can request a color, theme, name, or short quote depending on the item.</p>
+          </details>
+          <details>
+            <summary data-i18n="faqThreeQ">How do I place an order?</summary>
+            <p data-i18n="faqThreeA">Add items to your cart, then click checkout. The site prepares an email with your order summary.</p>
+          </details>
+          <details>
+            <summary data-i18n="faqFourQ">What payment methods are available?</summary>
+            <p data-i18n="faqFourA">This first version prepares orders by email. Stripe, Shopify, Etsy, or SumUp can be connected next.</p>
+          </details>
+          <details>
+            <summary data-i18n="faqFiveQ">Can colors vary?</summary>
+            <p data-i18n="faqFiveA">Yes, slightly depending on screen, printing, and paper finish.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow" data-i18n="contactEyebrow">Contact</p>
+          <h2 id="contact-title" data-i18n="contactTitle">Have a special idea?</h2>
+          <p data-i18n="contactText">Ask for a custom order, a gift collection, or a specific color palette.</p>
+        </div>
+        <form class="contact-form" action="mailto:hello@bookblush.example" method="post" enctype="text/plain">
+          <label>
+            <span data-i18n="nameLabel">Your name</span>
+            <input name="Name" type="text" data-placeholder="namePlaceholder" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="Email" type="email" placeholder="you@email.com" required />
+          </label>
+          <label>
+            <span data-i18n="messageLabel">Message</span>
+            <textarea name="Message" rows="4" data-placeholder="messagePlaceholder" placeholder="I would love a pink Kindle insert with..."></textarea>
+          </label>
+          <button class="button primary" type="submit" data-i18n="sendButton">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>BookBlush</strong>
+        <p data-i18n="footerText">Cute, classy reading accessories for pages you love.</p>
+      </div>
+      <form class="newsletter">
+        <label for="newsletter-email" data-i18n="newsletterLabel">Get new drops</label>
+        <div>
+          <input id="newsletter-email" type="email" placeholder="you@email.com" />
+          <button type="submit" aria-label="Sign up">-></button>
+        </div>
+      </form>
+    </footer>
+
+    <aside class="cart-drawer" aria-hidden="true" data-cart-drawer>
+      <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="cart-header">
+          <h2 id="cart-title" data-i18n="cartTitle">Your cart</h2>
+          <button type="button" data-close-cart aria-label="Close cart">x</button>
+        </div>
+        <div class="cart-items" data-cart-items></div>
+        <div class="cart-empty" data-cart-empty data-i18n="cartEmpty">Your cart is empty for now.</div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span data-i18n="cartTotal">Total</span>
+            <strong data-cart-total>$0.00</strong>
+          </div>
+          <button class="button primary full" type="button" data-checkout data-i18n="checkoutButton">Checkout</button>
+          <p data-i18n="paymentNote">Secure payment can be connected in the next step.</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="toast" data-toast aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
