@@ -423,28 +423,34 @@ function renderProducts() {
 }
 
 function renderCart() {
+  function renderCart() {
   const entries = Object.entries(state.cart).filter(([, qty]) => qty > 0);
+
   cartCount.textContent = cartQuantity();
+
   const subtotal = cartValueCAD();
 
-let discount = 0;
+  let discount = 0;
 
-if (state.promoCode === "BOOKBLUSH10") {
-  discount = subtotal * 0.1;
-}
+  // 🔥 discount system (auto + code promo)
+  if (state.promoCode === "BOOKBLUSH10") {
+    discount += subtotal * 0.1;
+  }
 
-const totalCAD = subtotal - discount;
+  const totalCAD = Math.max(0, subtotal - discount);
 
-cartTotal.textContent = formatMoney(Math.max(0, totalCAD));
+  cartTotal.textContent = formatMoney(totalCAD);
+
   cartEmpty.classList.toggle("is-visible", entries.length === 0);
 
   cartItems.innerHTML = entries
     .map(([id, qty]) => {
       const product = getProduct(id);
       if (!product) return "";
+
       return `
         <article class="cart-line">
-          <img src="${product.image}" alt="" />
+          <img src="${product.image}" alt="${product.name}" />
           <div>
             <h3>${product.name}</h3>
             <p>${productType(product)} - ${formatMoney(product.priceCAD)}</p>
@@ -458,10 +464,6 @@ cartTotal.textContent = formatMoney(Math.max(0, totalCAD));
       `;
     })
     .join("");
-  <div class="promo-box">
-  <input type="text" id="promoInput" placeholder="Promo code" />
-  <button type="button" id="applyPromo">Apply</button>
-</div>
 }
 
 function renderAll() {
